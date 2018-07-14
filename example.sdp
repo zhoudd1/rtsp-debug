@@ -1,0 +1,3 @@
+c=IN IP4 127.0.0.1
+m=video 6970 RTP/AVP 97
+a=rtpmap:97 H264/90000

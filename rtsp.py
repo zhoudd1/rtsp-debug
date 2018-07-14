@@ -3,11 +3,13 @@ import tools
 clientColour = "OKBLUE"
 serverColour = "OKGREEN"
 debug = False
+sdpPath = ""
 
 class RTSP:
     
-    def __init__(self, debug):
+    def __init__(self, debug, sdpPath):
         self.debug = debug
+        self.sdpPath = sdpPath
 
     """
     Client message handling/parsing functions
@@ -24,12 +26,16 @@ class RTSP:
                 cmd = self.parse_options(msg)
             elif str.startswith(msg, "DESCRIBE"):
                 cmd = self.parse_describe(msg)
+            elif str.startswith(msg, "SETUP"):
+                cmd = self.parse_setup(msg)
             elif str.startswith(msg, "CSeq"):
                 cseq = self.parse_cseq(msg)
             elif str.startswith(msg, "User-Agent"):
                 self.parse_ua(msg)
             elif str.startswith(msg, "Accept"):
                 cmd.append(self.parse_accept(msg))
+            elif str.startswith(msg, "Transport"):
+                self.parse_transport(msg)
 
         self.build_response(conn, cmd, cseq)
 
@@ -42,6 +48,11 @@ class RTSP:
         path = msg[9:-9]
         tools.printc("[CLIENT]:  Requested DESCRIBE for \"{0}\"".format(path), clientColour)
         return ["DESCRIBE", path]
+
+    def parse_setup(self, msg):
+        path = msg[6:-9]
+        tools.printc("[CLIENT]:  Requested SETUP for \"{0}\"".format(path), clientColour)
+        return ["SETUP", path]
 
     def parse_cseq(self, msg):
         cseq = int(msg[6:])
@@ -56,6 +67,11 @@ class RTSP:
         accept = msg.split("/")[1]
         tools.printc("[CLIENT]:  Accepting {0}".format(accept.upper()), clientColour)
         return accept
+
+    def parse_transport(self, msg):
+        keys = msg[11:].split(';')
+        keys[2] = str.replace(keys[2], "client_port=", "")
+        tools.printc("[CLIENT]:  Transport {0} as {1} on ports {2}".format(keys[0], keys[1], keys[2]), clientColour)
 
     """
     Server response functions
@@ -97,9 +113,7 @@ class RTSP:
         tools.printc("[SERVER]:  Returned OPTIONS (Describe, Setup, Teardown, Play, Pause)", serverColour)
 
     def send_sdp(self, conn, cmd):
-        sdpStr = "c=IN IP4 127.0.0.1" + "\r\n" \
-                 "m=video 6970 RTP/AVP 97" + "\r\n" \
-                 "a=rtpmap:97 H264/90000"
+        sdpStr = open(self.sdpPath, "r").read()
 
         if self.debug:
             tools.printc("\r\n" + sdpStr, serverColour)
@@ -108,4 +122,4 @@ class RTSP:
         conn.send(b'Content-Length: ' + bytes(str(len(sdpStr)), encoding="utf-8") + b'\r\n')
 
         conn.send(b'\r\n' + bytes(sdpStr, encoding="utf-8") + b'\r\n')
-        tools.printc("[SERVER]:  Sending SDP", serverColour)
+        tools.printc("[SERVER]:  Sent SDP", serverColour)

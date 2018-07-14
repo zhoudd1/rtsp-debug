@@ -19,10 +19,11 @@ argparser = argparse.ArgumentParser(description="")
 argparser.add_argument("-a", action="store", help="RSTP listen interface", default="127.0.0.1")
 argparser.add_argument("-p", action="store", help="RSTP listen port", default=554)
 argparser.add_argument("-d", action="store_true", help="Enable debug output", default=False)
+argparser.add_argument("SDP", action="store", help="SDP file path")
 args = argparser.parse_args()
 
 tools.printc("RTSP Server v{0}".format(ver), "OKGREEN")
-rtsp = rtspClass(args.d)  # Create instance
+rtsp = rtspClass(args.d, args.SDP)  # Create instance
 
 # Configure socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
