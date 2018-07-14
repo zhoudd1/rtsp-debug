@@ -5,6 +5,7 @@ https://github.com/sam210723/rtsp-debug
 """
 
 import argparse
+from rtsp import RTSP as rtspClass
 import socket
 import tools
 
@@ -21,6 +22,7 @@ argparser.add_argument("-d", action="store_true", help="Enable debug output", de
 args = argparser.parse_args()
 
 tools.printc("RTSP Server v{0}".format(ver), "OKGREEN")
+rtsp = rtspClass(args.d)  # Create instance
 
 # Configure socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -36,7 +38,7 @@ except:
 # Begin listening for incoming connections
 def listen():
     sock.listen(1)
-    print("Listening: {0}:{1}\n------------------------------\n".format(args.a, args.p))
+    print("Listening: {0}:{1}\n".format(args.a, args.p))
 
     # Listen forever
     while True:
@@ -50,22 +52,11 @@ def listen():
             while True:
                 data = conn.recv(1024)
                 msgs = data.decode("utf-8").split('\r\n')
+                if msgs != ['']:  # Block null messages
+                    rtsp.parse_msgs(msgs, conn)
 
-                for msg in msgs:
-                    if msg:  # If message not null
-                        if args.d:  # If debug output enabled
-                            tools.printc("[DEBUG ]:  {0}".format(msg), clientColour)
-
-                        parse_msg(msg, conn)
         finally:
             conn.close()
-
-
-# Parse incoming messages
-def parse_msg(msg, conn):
-    # OPTIONS
-    if str.startswith(msg, "OPTIONS"):
-        tools.printc("[CLIENT]:  Requested OPTIONS", clientColour)
 
 
 # Open socket and listen
