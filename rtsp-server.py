@@ -27,7 +27,7 @@ rtsp = rtspClass(args.d, args.SDP)  # Create instance
 
 # Configure socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock_addr = (args.a, args.p)
+sock_addr = (args.a, int(args.p))
 
 try:
     sock.bind(sock_addr)
