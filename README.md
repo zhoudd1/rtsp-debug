@@ -1,5 +1,5 @@
 # rtsp-debug
-Tool for working with the RTSP protocol and RTP streams.
+Tools for working with the RTSP protocol, RTP streams and SDP files
 
 Test patterns are from https://www.w6rz.net.
 
