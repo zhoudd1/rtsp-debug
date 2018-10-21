@@ -258,7 +258,7 @@ def p_a(v):  # Attribute
 
         enc = map[1].split("/")
         print("{}  - Encoding:         {}{}".format(Style.BRIGHT, Style.RESET_ALL, enc[0].upper()))
-        print("{}  - Rate:             {}{} kHz".format(Style.BRIGHT, Style.RESET_ALL, int(enc[1])/1000))
+        print("{}  - Rate:             {}{} kHz".format(Style.BRIGHT, Style.RESET_ALL, int(enc[1])/1000), end="")
 
     elif (attr == "recvonly"):    # Receive only session
         print("{}  - Type:             {}Receive-only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
