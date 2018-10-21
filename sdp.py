@@ -209,7 +209,29 @@ def p_k(v):  # Encryption
         print("{}  - Method:           {}{}".format(Style.BRIGHT, Style.RESET_ALL, v))
 
 def p_a(v):  # Attribute
+    toks = v.split(":")
+
     print(Style.BRIGHT + Fore.GREEN + "Attribute:" + Style.RESET_ALL)
+
+    if (toks[0] == "cat"):
+        print("{}  - Type:             {}Category".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
+        cats = toks[1].split(".")
+
+        # Loop through categories and display in cascading tree structure
+        i = 0
+        for c in cats:
+            if i > 0:
+                print("\t\t       ", end="")
+
+                for j in range(i):
+                    print(" ", end="")
+                print("└ ", end="")
+            print("\"{}\"".format(c))
+            i += 1
+    elif (toks[0] == "recvonly"):
+        print("{}  - Type:             {}Receive only".format(Style.BRIGHT, Style.RESET_ALL))
+
 
 def p_m(v):  # Media
     toks = v.split(" ")
