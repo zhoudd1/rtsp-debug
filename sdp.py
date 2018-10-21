@@ -250,8 +250,14 @@ def p_a(v):  # Attribute
     elif (attr == "maxptime"):  # Maximum packet time
         print("{}  - Type:             {}Maximum packet time".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}{}ms".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
-    elif (attr == "recvonly"):  # Receive only
+    elif (attr == "recvonly"):  # Receive only session
         print("{}  - Type:             {}Receive-only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
+    elif (attr == "sendrecv"):  # Send + receive session
+        print("{}  - Type:             {}Send + receive session".format(Style.BRIGHT, Style.RESET_ALL), end="")
+    elif (attr == "sendonly"):  # Send only session
+        print("{}  - Type:             {}Send only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
+    elif (attr == "inactive"):  # Inactive session
+        print("{}  - Type:             {}Inactive session".format(Style.BRIGHT, Style.RESET_ALL), end="")
     
     print()
 
