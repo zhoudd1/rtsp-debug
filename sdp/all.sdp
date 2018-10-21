@@ -27,6 +27,7 @@ a=sdplang:en
 a=lang:en
 a=framerate:60
 a=quality:9
+a=fmtp:TEST test
 m=audio 49170/2 RTP/AVP 0
 m=video 51372 RTP/AVP 33
 a=rtpmap:99 h263-1998/90000

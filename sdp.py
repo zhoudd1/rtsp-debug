@@ -287,14 +287,18 @@ def p_a(v):  # Attribute
         qual = toks[1]
         
         if (int(qual) >= 0 and int(qual) <= 3):
-            print("Worst ({})".format(qual))
+            print("Worst ({})".format(qual), end="")
         elif (int(qual) >= 4 and int(qual) <= 7):
-            print("Better ({})".format(qual))
+            print("Better ({})".format(qual), end="")
         elif (int(qual) >= 8 and int(qual) <= 10):
-            print("Best ({})".format(qual))
-
+            print("Best ({})".format(qual), end="")
+    elif (attr == "fmtp"):        # Format specific parameters
+        fmtp = toks[1].split(" ")
+        print("{}  - Type:             {}Format specific parameters".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Format:           {}{}".format(Style.BRIGHT, Style.RESET_ALL, fmtp[0]))
+        print("{}  - Parameters:       {}{}".format(Style.BRIGHT, Style.RESET_ALL, fmtp[1]), end="")
+    
     print()
-
 
 def p_m(v):  # Media
     toks = v.split(" ")
