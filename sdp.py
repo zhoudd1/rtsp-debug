@@ -215,7 +215,7 @@ def p_a(v):  # Attribute
     print(Style.BRIGHT + Fore.GREEN + "Attribute:" + Style.RESET_ALL)
 
     if (attr == "cat"):  # Category
-        print("{}  - Type:             {}Category".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Type:             {}Session category".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
         cats = toks[1].split(".")
 
@@ -231,7 +231,7 @@ def p_a(v):  # Attribute
             print("\"{}\"".format(c), end="")
             i += 1
     elif (attr == "keywds"):  # Keywords
-        print("{}  - Type:             {}Keywords".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Type:             {}Session keywords".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
         words = toks[1].split(".")
 
@@ -241,8 +241,11 @@ def p_a(v):  # Attribute
                 print(", ", end="")
             print("\"{}\"".format(w), end="")
             i += 1
+    elif (attr == "tool"):  # Tool
+        print("{}  - Type:             {}SDP creation tool name".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}\"{}\"".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
     elif (attr == "recvonly"):  # Receive only
-        print("{}  - Type:             {}Receive only".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Type:             {}Receive-only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
     
     print()
 

@@ -14,6 +14,7 @@ k=base64:c3VwZXJzZWNyZXQ=
 a=recvonly
 a=cat:Root.Parent.Child.Sub Child
 a=keywds:SDP.Parsing.Test
+a=tool:Test v1
 m=audio 49170/2 RTP/AVP 0
 m=video 51372 RTP/AVP 33
 a=rtpmap:99 h263-1998/90000
