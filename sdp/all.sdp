@@ -20,6 +20,7 @@ a=recvonly
 a=sendrecv
 a=sendonly
 a=inactive
+a=orient:seascape
 m=audio 49170/2 RTP/AVP 0
 m=video 51372 RTP/AVP 33
 a=rtpmap:99 h263-1998/90000

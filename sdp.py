@@ -67,9 +67,9 @@ def init(path):
 # Parse functions
 def p_v(v):  # Version
     if (v == "0"):
-        print("{}SDP Version:    {}0 (RFC4566)".format(Style.BRIGHT + Fore.GREEN, Style.RESET_ALL))
+        print("{}SDP Version:          {}0 (RFC4566)".format(Style.BRIGHT + Fore.GREEN, Style.RESET_ALL))
     else:
-        print("{}SDP Version:    {}{}".format(Style.BRIGHT + Fore.GREEN, Style.RESET_ALL, v))
+        print("{}SDP Version:          {}{}".format(Style.BRIGHT + Fore.GREEN, Style.RESET_ALL, v))
 
 def p_o(v):  # Origin
     toks = v.split(" ")
@@ -258,6 +258,14 @@ def p_a(v):  # Attribute
         print("{}  - Type:             {}Send only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
     elif (attr == "inactive"):  # Inactive session
         print("{}  - Type:             {}Inactive session".format(Style.BRIGHT, Style.RESET_ALL), end="")
+    elif (attr == "orient"):    # Orientation
+        print("{}  - Type:             {}Orientation".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
+
+        if (toks[1] != "portrait" and toks[1] != "landscape" and toks[1] != "seascape"):
+            print("Unknown (\"{}\")".format(toks[1]), end="")
+        else:
+            print(toks[1].title(), end="")
     
     print()
 
