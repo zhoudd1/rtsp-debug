@@ -210,10 +210,11 @@ def p_k(v):  # Encryption
 
 def p_a(v):  # Attribute
     toks = v.split(":")
+    attr = toks[0]
 
     print(Style.BRIGHT + Fore.GREEN + "Attribute:" + Style.RESET_ALL)
 
-    if (toks[0] == "cat"):
+    if (attr == "cat"):  # Category
         print("{}  - Type:             {}Category".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
         cats = toks[1].split(".")
@@ -222,15 +223,28 @@ def p_a(v):  # Attribute
         i = 0
         for c in cats:
             if i > 0:
-                print("\t\t       ", end="")
+                print("\n\t\t       ", end="")
 
                 for j in range(i):
                     print(" ", end="")
                 print("└ ", end="")
-            print("\"{}\"".format(c))
+            print("\"{}\"".format(c), end="")
             i += 1
-    elif (toks[0] == "recvonly"):
+    elif (attr == "keywds"):  # Keywords
+        print("{}  - Type:             {}Keywords".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
+        words = toks[1].split(".")
+
+        i = 0
+        for w in words:
+            if i > 0:
+                print(", ", end="")
+            print("\"{}\"".format(w), end="")
+            i += 1
+    elif (attr == "recvonly"):  # Receive only
         print("{}  - Type:             {}Receive only".format(Style.BRIGHT, Style.RESET_ALL))
+    
+    print()
 
 
 def p_m(v):  # Media
