@@ -266,7 +266,19 @@ def p_a(v):  # Attribute
             print("Unknown (\"{}\")".format(toks[1]), end="")
         else:
             print(toks[1].title(), end="")
-    
+    elif (attr == "type"):      # Conference type
+        print("{}  - Type:             {}Conference type".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}{}".format(Style.BRIGHT, Style.RESET_ALL, toks[1].title()), end="")
+    elif (attr == "charset"):   # Character set
+        print("{}  - Type:             {}Character set".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}{}".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
+    elif (attr == "sdplang"):   # SDP language
+        print("{}  - Type:             {}SDP language".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}{}".format(Style.BRIGHT, Style.RESET_ALL, toks[1].upper()), end="")
+    elif (attr == "lang"):      # Session language
+        print("{}  - Type:             {}Session language".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}{}".format(Style.BRIGHT, Style.RESET_ALL, toks[1].upper()), end="")
+
     print()
 
 
