@@ -214,7 +214,7 @@ def p_a(v):  # Attribute
 
     print(Style.BRIGHT + Fore.GREEN + "Attribute:" + Style.RESET_ALL)
 
-    if (attr == "cat"):  # Category
+    if (attr == "cat"):         # Category
         print("{}  - Type:             {}Session category".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
         cats = toks[1].split(".")
@@ -230,7 +230,7 @@ def p_a(v):  # Attribute
                 print("└ ", end="")
             print("\"{}\"".format(c), end="")
             i += 1
-    elif (attr == "keywds"):  # Keywords
+    elif (attr == "keywds"):    # Keywords
         print("{}  - Type:             {}Session keywords".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
         words = toks[1].split(".")
@@ -241,9 +241,15 @@ def p_a(v):  # Attribute
                 print(", ", end="")
             print("\"{}\"".format(w), end="")
             i += 1
-    elif (attr == "tool"):  # Tool
+    elif (attr == "tool"):      # Tool
         print("{}  - Type:             {}SDP creation tool name".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}\"{}\"".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
+    elif (attr == "ptime"):     # Packet time
+        print("{}  - Type:             {}Packet time".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}{}ms".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
+    elif (attr == "maxptime"):  # Maximum packet time
+        print("{}  - Type:             {}Maximum packet time".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}{}ms".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
     elif (attr == "recvonly"):  # Receive only
         print("{}  - Type:             {}Receive-only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
     
