@@ -214,7 +214,7 @@ def p_a(v):  # Attribute
 
     print(Style.BRIGHT + Fore.GREEN + "Attribute:" + Style.RESET_ALL)
 
-    if (attr == "cat"):         # Category
+    if (attr == "cat"):           # Category
         print("{}  - Type:             {}Session category".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
         cats = toks[1].split(".")
@@ -230,7 +230,7 @@ def p_a(v):  # Attribute
                 print("└ ", end="")
             print("\"{}\"".format(c), end="")
             i += 1
-    elif (attr == "keywds"):    # Keywords
+    elif (attr == "keywds"):      # Keywords
         print("{}  - Type:             {}Session keywords".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
         words = toks[1].split(".")
@@ -241,24 +241,24 @@ def p_a(v):  # Attribute
                 print(", ", end="")
             print("\"{}\"".format(w), end="")
             i += 1
-    elif (attr == "tool"):      # Tool
+    elif (attr == "tool"):        # Tool
         print("{}  - Type:             {}SDP creation tool name".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}\"{}\"".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
-    elif (attr == "ptime"):     # Packet time
+    elif (attr == "ptime"):       # Packet time
         print("{}  - Type:             {}Packet time".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}{}ms".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
-    elif (attr == "maxptime"):  # Maximum packet time
+    elif (attr == "maxptime"):    # Maximum packet time
         print("{}  - Type:             {}Maximum packet time".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}{}ms".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
-    elif (attr == "recvonly"):  # Receive only session
+    elif (attr == "recvonly"):    # Receive only session
         print("{}  - Type:             {}Receive-only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
-    elif (attr == "sendrecv"):  # Send + receive session
+    elif (attr == "sendrecv"):    # Send + receive session
         print("{}  - Type:             {}Send + receive session".format(Style.BRIGHT, Style.RESET_ALL), end="")
-    elif (attr == "sendonly"):  # Send only session
+    elif (attr == "sendonly"):    # Send only session
         print("{}  - Type:             {}Send only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
-    elif (attr == "inactive"):  # Inactive session
+    elif (attr == "inactive"):    # Inactive session
         print("{}  - Type:             {}Inactive session".format(Style.BRIGHT, Style.RESET_ALL), end="")
-    elif (attr == "orient"):    # Orientation
+    elif (attr == "orient"):      # Orientation
         print("{}  - Type:             {}Orientation".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
 
@@ -266,18 +266,32 @@ def p_a(v):  # Attribute
             print("Unknown (\"{}\")".format(toks[1]), end="")
         else:
             print(toks[1].title(), end="")
-    elif (attr == "type"):      # Conference type
+    elif (attr == "type"):        # Conference type
         print("{}  - Type:             {}Conference type".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}{}".format(Style.BRIGHT, Style.RESET_ALL, toks[1].title()), end="")
-    elif (attr == "charset"):   # Character set
+    elif (attr == "charset"):     # Character set
         print("{}  - Type:             {}Character set".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}{}".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
-    elif (attr == "sdplang"):   # SDP language
+    elif (attr == "sdplang"):     # SDP language
         print("{}  - Type:             {}SDP language".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}{}".format(Style.BRIGHT, Style.RESET_ALL, toks[1].upper()), end="")
-    elif (attr == "lang"):      # Session language
+    elif (attr == "lang"):        # Session language
         print("{}  - Type:             {}Session language".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}{}".format(Style.BRIGHT, Style.RESET_ALL, toks[1].upper()), end="")
+    elif (attr == "framerate"):   # Maximum framerate
+        print("{}  - Type:             {}Maximum framerate".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}{} fps".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
+    elif (attr == "quality"):     # Quality
+        print("{}  - Type:             {}Quality".format(Style.BRIGHT, Style.RESET_ALL))
+        print("{}  - Value:            {}".format(Style.BRIGHT, Style.RESET_ALL), end="")
+        qual = toks[1]
+        
+        if (int(qual) >= 0 and int(qual) <= 3):
+            print("Worst ({})".format(qual))
+        elif (int(qual) >= 4 and int(qual) <= 7):
+            print("Better ({})".format(qual))
+        elif (int(qual) >= 8 and int(qual) <= 10):
+            print("Best ({})".format(qual))
 
     print()
 
