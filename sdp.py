@@ -250,6 +250,16 @@ def p_a(v):  # Attribute
     elif (attr == "maxptime"):    # Maximum packet time
         print("{}  - Type:             {}Maximum packet time".format(Style.BRIGHT, Style.RESET_ALL))
         print("{}  - Value:            {}{}ms".format(Style.BRIGHT, Style.RESET_ALL, toks[1]), end="")
+    elif (attr == "rtpmap"):      # RTP payload map
+        print("{}  - Type:             {}RTP payload map".format(Style.BRIGHT, Style.RESET_ALL))
+        map = toks[1].split(" ")
+
+        print("{}  - Payload:          {}{}".format(Style.BRIGHT, Style.RESET_ALL, map[0]))
+
+        enc = map[1].split("/")
+        print("{}  - Encoding:         {}{}".format(Style.BRIGHT, Style.RESET_ALL, enc[0].upper()))
+        print("{}  - Rate:             {}{} kHz".format(Style.BRIGHT, Style.RESET_ALL, int(enc[1])/1000))
+
     elif (attr == "recvonly"):    # Receive only session
         print("{}  - Type:             {}Receive-only session".format(Style.BRIGHT, Style.RESET_ALL), end="")
     elif (attr == "sendrecv"):    # Send + receive session
